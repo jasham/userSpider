@@ -49,7 +49,6 @@ Text.propTypes = {
   fSize: PropTypes.string,
   lineHeight: PropTypes.number,
   ffamily: PropTypes.string,
-  textAlign: PropTypes.string,
 };
 
 export default Text;
