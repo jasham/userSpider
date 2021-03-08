@@ -4,7 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
-
+.next/
+public/
+**/*.json
+/storybook-static/
 # testing
 /coverage
 
