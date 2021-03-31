@@ -12,7 +12,6 @@ const UnstyleLink = withStyles({
     paddingBottom: '1px',
     fontFamily: 'Poppins',
     borderBottom: '2px solid #FFFFFF',
-    fontWeight: 400,
     '&:hover': {
       textDecoration: 'none !important',
       borderBottom: '2px solid #34a76c',
