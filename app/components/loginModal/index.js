@@ -75,7 +75,7 @@ const Login = ({ classes, open, handleClose }) => {
   };
 
   const login = async (data) => {
-    const loginData = await request({
+    await request({
       url: `${URLS.USERLOGIN}`,
       method: 'post',
       data,
@@ -92,7 +92,7 @@ const Login = ({ classes, open, handleClose }) => {
           type: LOGIN_MODAL_STATUS,
           value: false,
         });
-      } else if (loginData.result === 'wrongEmail') {
+      } else if (res.result === 'wrongEmail') {
         globalContext.allDispatch({
           type: ERROR_DESCRIPTION,
           value: 'Please enter correct email.',
@@ -105,7 +105,7 @@ const Login = ({ classes, open, handleClose }) => {
           type: ALERT_DIALOG,
           value: true,
         });
-      } else if (loginData.result === 'wrongPassword') {
+      } else if (res.result === 'wrongPassword') {
         globalContext.allDispatch({
           type: ERROR_DESCRIPTION,
           value: 'Please enter correct password.',

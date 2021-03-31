@@ -167,7 +167,6 @@ const Order = ({ classes, query }) => {
   const onPayNow = () => {};
 
   const onCashOnDelivery = async () => {
-    console.log('ginger', globalContext.state);
     if (globalContext.state.selectedAddressData) {
       if (globalContext.state.purchaseData.mainService) {
         const tempBooking = {
@@ -182,12 +181,10 @@ const Order = ({ classes, query }) => {
           group_id: globalContext.state.purchaseData.mainService.group_id,
         };
 
-        const loginData = await request({
+        await request({
           url: `${URLS.BOOKING_API}`,
           method: 'post',
           data: tempBooking,
-        }).then((res) => {
-          console.log('Data is booked', res);
         });
       } else {
         // select service

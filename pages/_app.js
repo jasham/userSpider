@@ -23,7 +23,8 @@ export default function MyApp(props) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
     if (!socket) {
-      socket = io.connect('http://localhost:8080');
+      // socket = io.connect('http://localhost:8080');
+      socket = io.connect('https://spidy-server.herokuapp.com/');
     }
   }, []);
 
