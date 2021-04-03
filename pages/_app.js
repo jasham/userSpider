@@ -8,6 +8,7 @@ import theme from '../app/components/themes';
 import { store } from '../app/lib/utility/store';
 import { reducer } from '../app/lib/utility/reducer';
 import 'react-multi-carousel/lib/styles.css';
+import '../styles/globals.css';
 
 export const GlobalContext = React.createContext();
 let socket;

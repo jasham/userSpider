@@ -61,9 +61,14 @@ const Layout = ({ children }) => {
   }, []);
 
   return (
-    <Box id="new">
-      <Header />
-      {children}
+    <Box id="layout" height="100%" display="flex" flexDirection="column">
+      <Box component="header" id="header" flexShrink="0">
+        <Header />
+      </Box>
+      <Box component="main" id="main" flexGrow="1">
+        {children}
+      </Box>
+
       <Footer />
 
       {globalContext.state.loadingBarStatus ? <LoadingBar /> : null}
