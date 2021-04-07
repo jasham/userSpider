@@ -4,13 +4,20 @@ const { parsed: localEnv2 } = require('dotenv').config({
 });
 // eslint-disable-next-line import/no-extraneous-dependencies
 const webpack = require('webpack');
+const withPWA = require('next-pwa');
+const runtimeCaching = require('next-pwa/cache');
 
-module.exports = {
+module.exports = withPWA({
   images: {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     path: '/_next/image',
     loader: 'default',
+  },
+  pwa: {
+    dest: 'public',
+    runtimeCaching,
+    register: true,
   },
   webpack: (config) => {
     config.plugins.push(
@@ -18,4 +25,4 @@ module.exports = {
     );
     return config;
   },
-};
+});
