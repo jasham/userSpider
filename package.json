@@ -15,7 +15,8 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch --runInBand",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "heroku-postbuild": "next build"
   },
   "dependencies": {
     "@date-io/date-fns": "1.x",
