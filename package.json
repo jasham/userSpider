@@ -6,9 +6,9 @@
   "private": true,
   "author": "Jasham",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build",
-    "start": "node server.js",
+    "start": "next start",
     "prettier": "prettier --write */**/*.js",
     "eslint": "eslint --fix",
     "test": "jest",
