@@ -22,13 +22,13 @@ import URLS from '../../lib/utility/apis';
 const styles = (theme) => ({
   root: {
     marginTop: 20,
+    width: '100%',
+    height: '100%',
   },
   addressWrapper: {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'center',
     width: '100%',
     height: 600,
     gap: 14,
@@ -298,13 +298,7 @@ const Order = ({ classes, query }) => {
                     }}
                   >
                     <Button className={classes.button} onClick={onPayNow}>
-                      Pay Now
-                    </Button>
-                    <Button
-                      className={classes.button}
-                      onClick={onCashOnDelivery}
-                    >
-                      Cash On Delivery
+                      Payment
                     </Button>
                   </Box>
                 </Box>

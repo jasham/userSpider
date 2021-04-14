@@ -1,10 +1,12 @@
 html,
 body {
   font-family: 'Poppins', sans-serif;
+  height: 100%;
+}
+body {
   display: flex;
   flex-direction: column;
 }
-
 #__next {
   height: 100%;
 }

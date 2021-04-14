@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
   footer: {
     backgroundColor: '#34A76C',
     height: 50,
+    flexShrink: 0,
   },
 }));
 
