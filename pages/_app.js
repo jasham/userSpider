@@ -4,10 +4,12 @@ import io from 'socket.io-client';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import firebase from 'firebase/app';
 import theme from '../app/components/themes';
 import { store } from '../app/lib/utility/store';
 import { reducer } from '../app/lib/utility/reducer';
 import 'react-multi-carousel/lib/styles.css';
+import firebaseCloudMessaging from '../config/webPush';
 
 export const GlobalContext = React.createContext();
 let socket;
@@ -28,6 +30,34 @@ export default function MyApp(props) {
     }
   }, []);
 
+  React.useEffect(() => {
+    function getMessage() {
+      const messaging = firebase.messaging();
+      // console.log({ messaging });
+      messaging.onMessage((message) => {
+        console.log('Ginger message', message);
+        // const { title, body } = JSON.parse(message.data.notification);
+        // const options = {
+        //   body,
+        // };
+        // runtime.register().then((registration) => {
+        //   registration.showNotification(title, options);
+        // });
+      });
+    }
+    async function setToken() {
+      try {
+        const token = await firebaseCloudMessaging.init();
+        if (token) {
+          getMessage();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    setToken();
+  });
+
   return (
     <>
       <GlobalContext.Provider
@@ -42,8 +72,7 @@ export default function MyApp(props) {
           />
           <meta name="description" content="Description" />
           <meta name="keywords" content="Keywords" />
-          <title>Next.js PWA Example</title>
-
+          <title>Spider</title>
           <link rel="manifest" href="/manifest.json" />
           <link
             href="/icons/favicon-16x16.png"
@@ -63,7 +92,6 @@ export default function MyApp(props) {
         </Head>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-
           <Component {...pageProps} />
         </ThemeProvider>
       </GlobalContext.Provider>

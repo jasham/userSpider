@@ -29,6 +29,8 @@
     "date-fns": "^2.16.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "firebase": "^8.4.1",
+    "localforage": "^1.9.0",
     "next": "^10.0.3",
     "next-pwa": "^5.1.4",
     "prop-types": "^15.7.2",
