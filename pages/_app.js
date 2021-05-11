@@ -19,6 +19,36 @@ export default function MyApp(props) {
   const [globalState, dispatch] = useReducer(reducer, store);
 
   React.useEffect(() => {
+    const getMessage = () => {
+      const messaging = firebase.messaging();
+      // console.log({ messaging });
+      // console.log('Ginger message');
+
+      messaging.onMessage(() => {
+        // console.log('Ginger message', message);
+        // const { title, body } = JSON.parse(message.data.notification);
+        // const options = {
+        //   body,
+        // };
+        // runtime.register().then((registration) => {
+        //   registration.showNotification(title, options);
+        // });
+      });
+    };
+    const setToken = async () => {
+      try {
+        const token = await firebaseCloudMessaging.init();
+        // console.log('Reached Mocha', token);
+        if (token) {
+          getMessage();
+        }
+      } catch (error) {
+        // console.log(error);
+      }
+    };
+    setToken();
+  });
+  React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
@@ -29,34 +59,6 @@ export default function MyApp(props) {
       socket = io.connect('https://spidy-server.herokuapp.com/');
     }
   }, []);
-
-  React.useEffect(() => {
-    function getMessage() {
-      const messaging = firebase.messaging();
-      // console.log({ messaging });
-      messaging.onMessage((message) => {
-        console.log('Ginger message', message);
-        // const { title, body } = JSON.parse(message.data.notification);
-        // const options = {
-        //   body,
-        // };
-        // runtime.register().then((registration) => {
-        //   registration.showNotification(title, options);
-        // });
-      });
-    }
-    async function setToken() {
-      try {
-        const token = await firebaseCloudMessaging.init();
-        if (token) {
-          getMessage();
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    setToken();
-  });
 
   return (
     <>

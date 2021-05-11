@@ -10,15 +10,30 @@ firebase.initializeApp({
   appId: "1:229412288473:web:26028063b406a0a3944bc8",
   measurementId: "G-WYZS66C9N3"
 });
+const messaging = firebase.messaging()
 
-firebase.messaging();
+// Both of them ain't working
 
 //background notifications will be received here
-firebase.messaging().setBackgroundMessageHandler((payload) => {
-  const { title, body } = JSON.parse(payload.data.notification);
-  var options = {
-    body,
-    icon: '/icons/launcher-icon-4x.png',
-  };
-  registration.showNotification(title, options);
-});
+messaging.setBackgroundMessageHandler(function (payload) {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload)
+  // Customize notification here
+  const notificationTitle = 'Background Message Title'
+  const notificationOptions = {
+    body: 'Background Message body.',
+    icon: '/firebase-logo.png'
+  }
+
+  return self.registration.showNotification(notificationTitle, notificationOptions)
+})
+
+messaging.onBackgroundMessage(function (payload) {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload)
+  const notificationTitle = 'Background Message Title'
+  const notificationOptions = {
+    body: 'Background Message body.',
+    icon: '/firebase-logo.png'
+  }
+
+  return self.registration.showNotification(notificationTitle, notificationOptions)
+})
