@@ -4,7 +4,6 @@ import io from 'socket.io-client';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import firebase from 'firebase/app';
 import theme from '../app/components/themes';
 import { store } from '../app/lib/utility/store';
 import { reducer } from '../app/lib/utility/reducer';
@@ -18,37 +17,51 @@ export default function MyApp(props) {
   const { Component, pageProps } = props;
   const [globalState, dispatch] = useReducer(reducer, store);
 
+  // function displayNotification() {
+  //   if (Notification.permission === 'granted') {
+  //     navigator.serviceWorker.getRegistration().then((reg) => {
+  //       reg.showNotification('Go go');
+  //     });
+  //   }
+  // }
+  // const getMessage = () => {
+  //   console.log('message functions');
+  //   const messaging = firebase.messaging();
+  //   messaging.onMessage((message) => {
+  //     console.log('foreground', Notification.permission, window);
+  //     const notification = new Notification('Background Message Title', {
+  //       body: 'Background Message body.',
+  //     });
+  //     // displayNotification();
+  //     // setTimeout(() => {
+  //     //   notification.close();
+  //     // }, 5000);
+  //   });
+  // };
   React.useEffect(() => {
-    const getMessage = () => {
-      const messaging = firebase.messaging();
-      // console.log({ messaging });
-      // console.log('Ginger message');
+    // this is working
 
-      messaging.onMessage(() => {
-        // console.log('Ginger message', message);
-        // const { title, body } = JSON.parse(message.data.notification);
-        // const options = {
-        //   body,
-        // };
-        // runtime.register().then((registration) => {
-        //   registration.showNotification(title, options);
-        // });
-      });
-    };
-    const setToken = async () => {
-      try {
-        const token = await firebaseCloudMessaging.init();
-        // console.log('Reached Mocha', token);
-        if (token) {
-          getMessage();
-        }
-      } catch (error) {
-        // console.log(error);
-      }
-    };
-    setToken();
-  });
-  React.useEffect(() => {
+    // if ('serviceWorker' in navigator) {
+    //   navigator.serviceWorker.addEventListener('message', (event) =>
+    //     console.log('event for the service worker', event),
+    //   );
+    // }
+    firebaseCloudMessaging.init();
+    // const setToken = async () => {
+    //   try {
+    //     const token = await firebaseCloudMessaging.init();
+    //     if (token) {
+    //       console.log('token', token);
+    //       // not working
+    // getMessage();
+    //     }
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+
+    // setToken();
+
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
